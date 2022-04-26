@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+
+package main;
+
+option go_package = "./;proto";
+
+
+message String {
+    string value = 1;
+}
+
+// 区别于RPC服务，gRPC可以在proto文件中定义服务方法接口，从而生成给客户端和服务端两个用的接口
+service HelloService {
+    rpc Hello (String) returns (String);
+    rpc Channel (stream String) returns (stream String);
+}
